@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการสิ่งที่ต้องทำของฉัน</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>รายการสิ่งที่ต้องทำ</h1>
+        <div class="input-section">
+            <input type="text" id="todoInput" placeholder="พิมพ์สิ่งที่ต้องทำใหม่...">
+            <input type="date" id="dueDateInput" title="กำหนดวันครบกำหนด">
+            <input type="text" id="assigneeInput" placeholder="ผู้ดำเนินงาน (ถ้ามี)">
+            <input type="text" id="locationInput" placeholder="สถานที่นัดหมาย (ถ้ามี)">
+            <button id="addTodoButton">เพิ่ม</button>
+        </div>
+        <ul id="todoList">
+            </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

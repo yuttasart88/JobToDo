@@ -1,0 +1,231 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+
+.input-section {
+    display: flex;
+    flex-wrap: wrap; /* ให้ขึ้นบรรทัดใหม่ได้เมื่อจอมือถือเล็ก */
+    gap: 10px; /* ระยะห่างระหว่าง input/button */
+    margin-bottom: 25px;
+    justify-content: center;
+    align-items: center; /* ทำให้ input อยู่ในแนวเดียวกัน */
+}
+
+/* รวมสไตล์สำหรับ input ทั้งหมดใน input-section */
+.input-section input[type="text"],
+.input-section input[type="date"] {
+    flex-grow: 1; /* ทำให้ input ขยายเต็มพื้นที่ */
+    padding: 12px 15px;
+    border: 1px solid #cdd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    min-width: 200px; /* กำหนดความกว้างขั้นต่ำ */
+    box-sizing: border-box; /* สำคัญ: ทำให้ padding ไม่เพิ่มขนาดรวมของ input */
+}
+
+/* สไตล์เฉพาะสำหรับ input วันที่ */
+#dueDateInput {
+    color: #555;
+    cursor: pointer;
+}
+
+#addTodoButton {
+    background-color: #28a745; /* สีเขียว */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#addTodoButton:hover {
+    background-color: #218838;
+}
+
+#todoList {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+#todoList li {
+    background-color: #f8faff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap; /* ให้เนื้อหาขึ้นบรรทัดใหม่ได้ */
+    align-items: center;
+    border: 1px solid #e0e6ed;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    justify-content: space-between; /* เพื่อกระจายช่องไฟ */
+}
+
+#todoList li.completed {
+    background-color: #e6ffe6; /* สีเขียวอ่อนเมื่อทำเสร็จ */
+    text-decoration: line-through; /* ขีดฆ่าข้อความ */
+    color: #777;
+    border-color: #a3e0a3;
+}
+
+/* สีสำหรับรายการที่ใกล้จะถึงกำหนด / ถึงกำหนดแล้ว */
+#todoList li.due-soon {
+    background-color: #fff3cd; /* สีส้มอ่อน */
+    border-color: #ffeeba;
+}
+
+/* ตำแหน่งไอคอนรูปเปลวไฟ */
+#todoList li .due-alert-icon {
+    color: #dc3545; /* สีแดง */
+    margin-right: 10px;
+    font-size: 1.2rem;
+    animation: pulse 1.5s infinite; /* เพิ่ม animation ให้กระพริบ */
+}
+
+/* Animation สำหรับไอคอนรูปเปลวไฟ */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#todoList li .todo-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; /* ให้ข้อความกับวันที่อยู่คนละบรรทัด */
+    margin-right: 15px;
+    word-break: break-word; /* ให้ข้อความยาวๆ ขึ้นบรรทัดใหม่ */
+}
+
+#todoList li .todo-text {
+    font-size: 1.15rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#todoList li .todo-meta {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 5px;
+    display: block; /* ทำให้แต่ละส่วนของ meta ขึ้นบรรทัดใหม่ */
+}
+
+/* เพิ่มสไตล์สำหรับข้อมูลผู้ดำเนินงานและสถานที่ในรายการ */
+#todoList li .todo-meta span {
+    display: block; /* ทำให้แต่ละ span ขึ้นบรรทัดใหม่ */
+    margin-top: 2px;
+    font-size: 0.9rem; /* ขนาดเล็กกว่าเล็กน้อย */
+    color: #666;
+}
+
+#todoList li input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #007bff; /* สีน้ำเงินสำหรับ checkbox */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    position: relative;
+    outline: none; /* ลบเส้นกรอบเมื่อ focus */
+}
+
+#todoList li input[type="checkbox"]:checked {
+    background-color: #28a745; /* สีเขียวเมื่อติ๊กแล้ว */
+    border-color: #28a745;
+}
+
+#todoList li input[type="checkbox"]:checked::after {
+    content: '✔'; /* เครื่องหมายถูก */
+    color: white;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#todoList li .delete-button {
+    background-color: #dc3545; /* สีแดง */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* ชิดขวา */
+}
+
+#todoList li .delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .input-section {
+        flex-direction: column; /* วาง input/button ซ้อนกันเมื่อจอมือถือเล็ก */
+        align-items: stretch;
+    }
+    /* ใช้ selector แบบรวมเพื่อให้ทุก input มี width: 100% */
+    .input-section input,
+    #addTodoButton {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    #todoList li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
+    #todoList li input[type="checkbox"] {
+        order: 1; /* ให้ checkbox มาก่อน */
+        margin-right: 10px;
+    }
+    #todoList li .todo-content {
+        order: 2; /* เนื้อหาตามมา */
+        width: calc(100% - 35px); /* หักพื้นที่ checkbox */
+        margin-left: 35px; /* ชดเชยพื้นที่ checkbox */
+    }
+    #todoList li .due-alert-icon {
+        order: 3; /* ไอคอนอยู่หลังเนื้อหาแต่ก่อนปุ่มลบ */
+        margin-bottom: 10px; /* เพิ่มระยะห่างเมื่ออยู่ในโหมดมือถือ */
+        margin-left: 35px; /* ชดเชยพื้นที่ checkbox */
+    }
+    #todoList li .delete-button {
+        order: 4; /* ปุ่มลบไปอยู่สุดท้าย */
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
