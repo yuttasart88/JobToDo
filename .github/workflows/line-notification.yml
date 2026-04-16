@@ -1,0 +1,22 @@
+name: LINE Notification
+
+on: [push]
+
+jobs:
+  send-line-msg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Message
+        run: |
+          curl -X POST https://api.line.me/v2/bot/message/push \
+          -H 'Content-Type: application/json' \
+          -H 'Authorization: Bearer ${{ secrets.LINE_ACCESS_TOKEN }}' \
+          -d '{
+            "to": "${{ secrets.LINE_USER_ID }}",
+            "messages": [
+              {
+                "type": "text",
+                "text": "🛠️ **GitHub Notification**\n\n📌 Repo: ${{ github.repository }}\n👤 โดย: ${{ github.actor }}\n💬 Message: ${{ github.event.head_commit.message }}\n\n🔗 ดูความเปลี่ยนแปลง: ${{ github.event.head_commit.url }}"
+              }
+            ]
+          }'
