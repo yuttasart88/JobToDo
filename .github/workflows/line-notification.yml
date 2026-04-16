@@ -10,9 +10,9 @@ jobs:
         run: |
           curl -X POST https://api.line.me/v2/bot/message/push \
           -H 'Content-Type: application/json' \
-          -H 'Authorization: Bearer ${{ secrets.LINE_ACCESS_TOKEN }}' \
+          -H 'Authorization: Bearer ${{ secrets.YwBDM6uvdKqhQiRJdgdJaDWCj7/Y0GuKLuXgOzFSfGsozhXkAaogdlBZZ9pl+MBgSmu1ui7LL0MBm0tj5xAeD4T1EUm0TU61PDjjT4elKC2XVzE7NPwLYALjGWEhGLTmnWLBwXFfpl5LgBB/Ls9ckwdB04t89/1O/w1cDnyilFU= }}' \
           -d '{
-            "to": "${{ secrets.LINE_USER_ID }}",
+            "to": "${{ secrets.Ub136b40704235bd591cbd126668f819c }}",
             "messages": [
               {
                 "type": "text",
